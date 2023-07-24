@@ -1,4 +1,5 @@
 using course_project.Extensions;
+using course_project.Helpers;
 using course_project.Middlewares;
 using course_project.Models;
 using course_project.Persistence;
@@ -11,7 +12,7 @@ namespace course_project
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,7 @@ namespace course_project
             builder.Services.AddIdentityService(builder.Configuration);
             builder.Services.AddScoped<TokenService>();
             builder.Services.AddScoped<RefreshTokenService>();
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -72,6 +74,7 @@ namespace course_project
             });
 
             var app = builder.Build();
+            await app.Services.ApplyMigrationsForDbContext<CollectionContext>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

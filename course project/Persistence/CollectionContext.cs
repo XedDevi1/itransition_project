@@ -38,7 +38,8 @@ namespace course_project.Persistence
 
                 entity.Property(e => e.CollectionName)
                     .HasMaxLength(56)
-                    .HasColumnName("CollectionName");
+                    .HasColumnName("CollectionName")
+                    .IsRequired();
             });
 
             modelBuilder.Entity<Content>(entity =>
@@ -47,21 +48,25 @@ namespace course_project.Persistence
 
                 entity.Property(e => e.NameOfContent)
                     .HasMaxLength(56)
-                    .HasColumnName("NameOfContent");
+                    .HasColumnName("NameOfContent")
+                    .IsRequired();
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(1024)
-                    .HasColumnName("Description");
+                    .HasColumnName("Description")
+                    .IsRequired();
             });
 
             modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(e => e.Name)
                     .HasMaxLength(56)
-                    .HasColumnName ("Name");
+                    .HasColumnName ("Name")
+                    .IsRequired();
                 entity.Property(e => e.Surname)
                     .HasMaxLength(56)
-                    .HasColumnName("Surname");
+                    .HasColumnName("Surname")
+                    .IsRequired();
             });
         }
     }

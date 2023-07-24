@@ -12,7 +12,7 @@ using course_project.Persistence;
 namespace course_project.Migrations
 {
     [DbContext(typeof(CollectionContext))]
-    [Migration("20230723183237_Initial")]
+    [Migration("20230724181259_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

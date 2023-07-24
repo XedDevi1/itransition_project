@@ -2,6 +2,7 @@
 using course_project.Dtos;
 using course_project.Models;
 using course_project.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -83,7 +84,7 @@ namespace course_project.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult> CreateUserAsync()
         {
             var adminRole = new IdentityRole<int>()
@@ -95,8 +96,8 @@ namespace course_project.Controllers
 
             var adminUser = new User()
             {
-                Name = "ADMIN",
-                Surname = "ADMIN",
+                Name = "Admin",
+                Surname = "Admin",
                 UserName = "admin",
                 Email = "admin@gmail.com"
             };
