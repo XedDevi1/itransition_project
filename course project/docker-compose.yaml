@@ -1,0 +1,25 @@
+﻿version: '3.4'
+
+services:
+    api:
+        image: compose-api:latest
+        restart: on-failure
+        depends_on:
+            - db
+        build: 
+            context: .
+        ports: 
+            - "5100:80"
+        environment:
+            ConnectionStrings__DefaultConnection: "Data Source=db;Initial Catalog=Collection;User Id=sa;Password=PaSSw0rd"
+
+    db:
+        image: mcr.microsoft.com/mssql/server
+        restart: on-failure
+        ports: 
+            - "14433:1433"
+        environment:
+            ACCEPT_EULA: "Y"
+            MSSQL_SA_PASSWORD: "PaSSw0rd"
+        volumes:
+            - ./data:/var/opt/mssql/data
